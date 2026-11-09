@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sociedad El Muerto Padel League</title>
-  <meta name="description" content="An Austin-only padel team league for players rated about 3.5 to 4.0 on Playtomic. Six teams of six, drafted January 7 at Padel Society, then one Thursday a month through June 2027. $55 a player.">
+  <title>Sociedad El Muerto Padel League, Austin</title>
+  <meta name="description" content="An Austin-only padel team league for men and women rated about 3.5 to 4.0 on Playtomic. Six teams of six, drafted January 7 at Padel Society. Five rounds, then an all-day Saturday final. $55 a player.">
   <link rel="canonical" href="https://orangebl00d.github.io/sociedad-el-muerto-padel/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sociedad El Muerto Padel League">
-  <meta property="og:title" content="Sociedad El Muerto Padel League">
+  <meta property="og:title" content="Sociedad El Muerto Padel League, Austin">
   <meta property="og:description" content="A padel draft league for Austin players rated about 3.5 to 4.0 on Playtomic. Draft night is Thursday, January 7, at Padel Society.">
   <meta property="og:url" content="https://orangebl00d.github.io/sociedad-el-muerto-padel/">
   <meta property="og:image" content="https://orangebl00d.github.io/sociedad-el-muerto-padel/assets/og.jpg">
@@ -23,8 +23,8 @@
   <link rel="apple-touch-icon" href="assets/apple-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Homemade+Apple&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
   <header class="masthead">
@@ -53,133 +53,95 @@
 
         <div class="hook">
           <h1 id="hook">You get drafted.</h1>
-          <p class="lede">A padel team league for Austin players rated about 3.5 to 4.0 on Playtomic. On Thursday, January 7, at Padel Society, six captains draft six teams of six. Then every team plays the same Thursday night, once a month, through June. $55 a player, plus $15 or $30 a session for court time.</p>
+          <p class="lede">A padel team league for Austin players rated about 3.5 to 4.0 on Playtomic. Men and women both play. If your rating fits, you're in.</p>
         </div>
 
-        <form class="join" id="join" action="mailto:brookswiley@gmail.com" method="post" enctype="text/plain">
-          <h2>Put your name down</h2>
-          <div class="fields">
-            <label class="field field-name">Name<input name="name" autocomplete="name" required></label>
-            <label class="field">Home club (optional)<input name="club" placeholder="Your club"></label>
-            <label class="field">Playtomic level (optional)<input name="level" inputmode="decimal" placeholder="3.75" aria-describedby="level-note"></label>
-          </div>
-          <button type="submit" aria-describedby="join-fine">Email it to Brooks</button>
-          <p class="level-note" id="level-note" role="status"></p>
-          <p class="join-status" id="join-status" role="status"></p>
-          <p class="fine" id="join-fine">This opens an email to Brooks with your details filled in. Press send there to put your name down, and he'll email you when registration opens. If nothing opens, write to <a href="mailto:brookswiley@gmail.com">brookswiley@gmail.com</a>.</p>
-          <noscript><p class="fine">Or email brookswiley@gmail.com with your name, home club and Playtomic level.</p></noscript>
-        </form>
+        <div class="join" id="join">
+          <p class="facts">Six captains draft six teams of six on Thursday, January 7, at Padel Society. Five rounds follow at clubs around Austin, then an all-day Saturday final in June.</p>
+          <p class="price">$55 a player, plus $15 or $30 a session for court time.</p>
+          <!-- When the WhatsApp group exists: put its invite link in href, change the label to
+               "Join the WhatsApp group", and keep the email address in the small print. -->
+          <a class="button" id="join-button" href="mailto:brookswiley@gmail.com?subject=Put%20me%20down&amp;body=Name%3A%20%0AHome%20club%3A%20%0APlaytomic%20level%3A%20%0AWould%20captain%20%28yes%20or%20no%29%3A%20%0ASub%20only%20%28yes%20or%20no%29%3A%20%0A%0APut%20me%20down%20for%20the%20Austin%20pilot.">Email Brooks to get on the list</a>
+          <p class="fine">It opens an email with five quick questions. No mail app? Write to <a href="mailto:brookswiley@gmail.com">brookswiley@gmail.com</a>.</p>
+        </div>
+
+        <figure class="court-photo">
+          <img src="assets/kit-720.jpg" srcset="assets/kit-720.jpg 720w, assets/kit-1280.jpg 1280w" sizes="(min-width: 1180px) 35vw, (min-width: 760px) 45vw, 100vw" width="720" height="1120" alt="An El Muerto cap, sunglasses, a padel racket, a can of balls and a Padel Society water bottle on a patio chair.">
+        </figure>
       </div>
     </section>
 
     <section class="season" aria-labelledby="season-h">
       <div class="season-head">
         <h2 id="season-h">The season</h2>
-        <p>Seven Thursdays. Six teams play five rounds, so every team meets every other team once, and then everyone plays finals night. A different Austin club hosts each round, and every round has a backup Thursday for rain.</p>
+        <p>Draft night, five rounds, then finals. With six teams, every team meets every other team once. The rounds move around Austin's clubs, weather permitting, and start times are still to come.</p>
       </div>
-      <ol class="fixtures">
-        <li class="is-big">
-          <time datetime="2027-01-07"><span class="d">7</span><span class="m">Jan</span></time>
-          <div><h3>Draft night</h3><p>At Padel Society. Every registered player is invited, and you find out your team that night.</p></div>
-        </li>
-        <li><time datetime="2027-01-14"><span class="d">14</span><span class="m">Jan</span></time><div><h3>Round 1</h3></div></li>
-        <li><time datetime="2027-02-11"><span class="d">11</span><span class="m">Feb</span></time><div><h3>Round 2</h3></div></li>
-        <li>
-          <time datetime="2027-03-11"><span class="d">11</span><span class="m">Mar</span></time>
-          <div><h3>Round 3</h3><p>Backup is April 1, after SXSW and spring break.</p></div>
-        </li>
-        <li><time datetime="2027-04-15"><span class="d">15</span><span class="m">Apr</span></time><div><h3>Round 4</h3></div></li>
-        <li><time datetime="2027-05-13"><span class="d">13</span><span class="m">May</span></time><div><h3>Round 5</h3></div></li>
-        <li class="is-big">
-          <time datetime="2027-06-10"><span class="d">10</span><span class="m">Jun</span></time>
-          <div><h3>Finals night</h3><p>A bracket. The top two seeds get a bye, seeds 3 to 6 play first, and the winners meet the top two.</p></div>
-        </li>
+      <ol class="strip">
+        <li><span class="what">Draft</span><time datetime="2027-01-07"><span class="d">7</span><span class="m">Jan</span></time></li>
+        <li><span class="what">Round 1</span><time datetime="2027-01-14"><span class="d">14</span><span class="m">Jan</span></time></li>
+        <li><span class="what">Round 2</span><time datetime="2027-02-11"><span class="d">11</span><span class="m">Feb</span></time></li>
+        <li><span class="what">Round 3</span><time datetime="2027-03-11"><span class="d">11</span><span class="m">Mar</span></time></li>
+        <li><span class="what">Round 4</span><time datetime="2027-04-15"><span class="d">15</span><span class="m">Apr</span></time></li>
+        <li><span class="what">Round 5</span><time datetime="2027-05-13"><span class="d">13</span><span class="m">May</span></time></li>
+        <li><span class="what">Finals</span><span class="when"><span class="d">Sat</span><span class="m">Jun</span></span></li>
       </ol>
+      <div class="season-notes">
+        <p>Draft night is at Padel Society. Every registered player is invited, and you find out your team that night.</p>
+        <p>Finals are an all-day Saturday bracket in June, date to come. Seeds 3 to 6 play first, and the top two seeds get a bye.</p>
+      </div>
     </section>
 
     <section class="draft" aria-labelledby="draft-h">
       <div class="draft-copy">
         <h2 id="draft-h">How the draft works</h2>
-        <p>Nobody picks their own team. Your Playtomic level goes on the board, the commissioner and two captains check it, and six captains draft. Rounds 1 to 4 snake back and forth. In rounds 5 and 6, the team with the lowest combined level picks first, so the teams even out.</p>
-        <p>We simulated this draft 2,000 times with players rated 3.25 to 4.25. In all but about ten, every team's average level finished within a quarter point of every other team's.</p>
-        <p>The league is aimed at 3.5 to 4.0. There will also be a ceiling on World Padel Rating (WPR), and the number isn't set yet.</p>
+        <p>Nobody picks their own team. Your Playtomic level goes on the board, the commissioner and two captains check it, and six captains draft in a snake. The order runs 1 to 6, then back from 6 to 1, for six rounds.</p>
+        <p>The league is aimed at 3.5 to 4.0 on Playtomic. There will also be a ceiling on World Padel Rating (WPR), and the number isn't set yet.</p>
+        <p>The league needs six captains. If you'd run a team, say so when you put your name down.</p>
       </div>
       <figure class="board">
-        <div class="board-grid" role="img" aria-label="Draft board. Picks 1 to 24 snake across six teams over four rounds, so team 1 picks 1, 12, 13 and 24 and team 6 picks 6, 7, 18 and 19. In rounds 5 and 6 the team with the lowest combined level picks first.">
+        <div class="board-grid" role="img" aria-label="Draft board. Picks 1 to 36 snake across six teams over six rounds, so team 1 picks 1, 12, 13, 24, 25 and 36, and team 6 picks 6, 7, 18, 19, 30 and 31.">
           <span class="corner col">Team</span>
           <span class="col">1</span><span class="col">2</span><span class="col">3</span><span class="col">4</span><span class="col">5</span><span class="col">6</span>
         </div>
-        <figcaption>Picks 1 to 24 run back and forth. In rounds 5 and 6 the team with the lowest combined level picks first.</figcaption>
+        <figcaption>Picks 1 to 36 run back and forth across the six teams.</figcaption>
       </figure>
     </section>
 
     <section class="night" aria-labelledby="night-h">
       <h2 id="night-h">What a Thursday looks like</h2>
-
-      <figure class="fixture">
-        <figcaption class="visually-hidden">One fixture: your three pairs against their three pairs, on three courts.</figcaption>
-        <div class="fixture-courts">
-          <div class="mini">
-            <svg viewBox="0 0 100 200" width="100" height="200" aria-hidden="true">
-              <rect class="surface" x="1.5" y="1.5" width="97" height="197" rx="3" fill="#1d4f9f" stroke="#111111" stroke-width="3"/>
-              <path class="lines" d="M1.5 30.5H98.5M1.5 169.5H98.5M50 30.5V169.5" fill="none" stroke="#eef2fa" stroke-opacity="0.75" stroke-width="1.6"/>
-              <path class="netline" d="M1.5 100H98.5" stroke="#111111" stroke-width="3.5"/>
-              <circle class="them" cx="29" cy="62" r="8" fill="#fbf8f1" stroke="#111111" stroke-width="2"/><circle class="them" cx="71" cy="62" r="8" fill="#fbf8f1" stroke="#111111" stroke-width="2"/>
-              <circle class="you" cx="29" cy="138" r="8" fill="#111111" stroke="#f2ede2" stroke-width="2.5"/><circle class="you" cx="71" cy="138" r="8" fill="#111111" stroke="#f2ede2" stroke-width="2.5"/>
-            </svg>
-            <p><b>Line 1</b></p>
-          </div>
-          <div class="mini">
-            <svg viewBox="0 0 100 200" width="100" height="200" aria-hidden="true">
-              <rect class="surface" x="1.5" y="1.5" width="97" height="197" rx="3" fill="#1d4f9f" stroke="#111111" stroke-width="3"/>
-              <path class="lines" d="M1.5 30.5H98.5M1.5 169.5H98.5M50 30.5V169.5" fill="none" stroke="#eef2fa" stroke-opacity="0.75" stroke-width="1.6"/>
-              <path class="netline" d="M1.5 100H98.5" stroke="#111111" stroke-width="3.5"/>
-              <circle class="them" cx="29" cy="62" r="8" fill="#fbf8f1" stroke="#111111" stroke-width="2"/><circle class="them" cx="71" cy="62" r="8" fill="#fbf8f1" stroke="#111111" stroke-width="2"/>
-              <circle class="you" cx="29" cy="138" r="8" fill="#111111" stroke="#f2ede2" stroke-width="2.5"/><circle class="you" cx="71" cy="138" r="8" fill="#111111" stroke="#f2ede2" stroke-width="2.5"/>
-            </svg>
-            <p><b>Line 2</b></p>
-          </div>
-          <div class="mini">
-            <svg viewBox="0 0 100 200" width="100" height="200" aria-hidden="true">
-              <rect class="surface" x="1.5" y="1.5" width="97" height="197" rx="3" fill="#1d4f9f" stroke="#111111" stroke-width="3"/>
-              <path class="lines" d="M1.5 30.5H98.5M1.5 169.5H98.5M50 30.5V169.5" fill="none" stroke="#eef2fa" stroke-opacity="0.75" stroke-width="1.6"/>
-              <path class="netline" d="M1.5 100H98.5" stroke="#111111" stroke-width="3.5"/>
-              <circle class="them" cx="29" cy="62" r="8" fill="#fbf8f1" stroke="#111111" stroke-width="2"/><circle class="them" cx="71" cy="62" r="8" fill="#fbf8f1" stroke="#111111" stroke-width="2"/>
-              <circle class="you" cx="29" cy="138" r="8" fill="#111111" stroke="#f2ede2" stroke-width="2.5"/><circle class="you" cx="71" cy="138" r="8" fill="#111111" stroke="#f2ede2" stroke-width="2.5"/>
-            </svg>
-            <p><b>Line 3</b></p>
-          </div>
-        </div>
-
-        <p class="legend" aria-hidden="true"><span class="dot you"></span>Your six <span class="dot them"></span>Their six</p>
-
-        <div class="fixture-copy">
-          <p>Each team has three lines, and both captains declare their three.</p>
-          <p>All three matches are played at the same time, or as close to it as the host club's courts allow.</p>
-          <p>With six on a team, you play every night you're available.</p>
-          <p>Matches are two sets to six with golden point, and a <span class="nowrap">10-point</span> tiebreak at a set apiece. A team scores a point for every line it wins and one more for winning the fixture.</p>
-        </div>
+      <figure class="night-fig">
+        <img src="assets/match-night.svg" width="1296" height="554" loading="lazy" alt="Three padel courts side by side at night under floodlights. On each court a pair in black faces a pair in white across the net.">
+        <figcaption>One fixture. Your six in black, their six in white, on three courts at once.</figcaption>
       </figure>
+      <div class="night-copy">
+        <p>Each team has three lines, and both captains declare their three.</p>
+        <p>All three matches are played at the same time, or as close to it as the host club's courts allow.</p>
+        <p>Men and women both play. With six on a team, you play every night you're available.</p>
+        <p>Matches are two sets to six with golden point, and a <span class="nowrap">10-point</span> tiebreak at a set apiece. A team scores a point for every line it wins and one more for winning the fixture.</p>
+      </div>
     </section>
 
     <section class="fee" aria-labelledby="fee-h">
       <h2 id="fee-h"><span class="visually-hidden">League fee: </span>$55</h2>
       <div class="fee-copy">
-        <p>That's the league fee for the season. It covers draft night, finals night, new balls for every line and the app that runs lineups and scores.</p>
-        <p>Court time you pay to the host club on the night: $15 or $30 a session, depending on the club. Play all six match nights and the season costs $145 to $235 all in.</p>
+        <p>That's the league fee for the season. It covers draft night, finals day and new balls for every line.</p>
+        <p>Court time you pay to the host club on the night: $15 or $30 a session, depending on the club. Five rounds come to $75 to $150.</p>
         <p>Make every match you're in the lineup for and $10 comes off next season. The league is not-for-profit.</p>
-        <p class="subs">If you can't make every match night, <a href="mailto:brookswiley@gmail.com?subject=Sub%20list%3A%20Sociedad%20El%20Muerto&amp;body=Name%3A%20%0AHome%20club%3A%20%0APlaytomic%20level%3A%20">email Brooks to join the sub list</a>. Subs fill in when a team is short and pay the host club's court fee on nights they play.</p>
+        <p class="subs">With six on a team, every absence needs a sub. If you can't commit to the season, <a href="mailto:brookswiley@gmail.com?subject=Sub%20list%3A%20Sociedad%20El%20Muerto&amp;body=Name%3A%20%0AHome%20club%3A%20%0APlaytomic%20level%3A%20">email Brooks to join the sub list</a>. Subs pay the host club's court fee on nights they play.</p>
       </div>
     </section>
 
     <section class="note" aria-labelledby="note-h">
       <h2 id="note-h" class="visually-hidden">From the commissioner</h2>
       <div class="note-copy">
-        <p>Sociedad El Muerto is my team at Padel Society. I wanted a league where you don't pick your team, so a Thursday night turns into new partners and new rivals.</p>
+        <p>I wanted a league where you don't pick your team, so a Thursday night turns into new partners and new rivals.</p>
         <p>I co-founded Major League Pickleball and was DUPR's first CEO, so I've built a draft league and a rating system before. This one is smaller on purpose, 36 players in one city.</p>
         <p>This season is Austin only.</p>
-        <p class="signed"><span class="signature">Brooks Wiley</span><span>Commissioner</span></p>
+        <p class="signed"><span class="name">Brooks Wiley</span><span>Commissioner</span></p>
       </div>
+      <figure class="note-photo">
+        <img src="assets/cap-560.jpg" srcset="assets/cap-560.jpg 560w, assets/cap-1000.jpg 1000w" sizes="(min-width: 760px) 400px, 70vw" width="560" height="742" loading="lazy" alt="A black El Muerto cap with a white rope across the brim.">
+      </figure>
     </section>
 
     <section class="partners" aria-labelledby="partners-h">
@@ -195,6 +157,6 @@
     <p><a href="mailto:brookswiley@gmail.com">brookswiley@gmail.com</a></p>
   </footer>
 
-  <script src="script.js?v=5" defer></script>
+  <script src="script.js?v=6" defer></script>
 </body>
 </html>
