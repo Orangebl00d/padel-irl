@@ -53,9 +53,20 @@ a {
   text-underline-offset: 3px;
 }
 
+/* Ink rings on the light sections, marigold on the court and the dark ones. */
 :focus-visible {
-  outline: 3px solid var(--marigold);
+  outline: 3px solid var(--ink);
   outline-offset: 3px;
+}
+
+.court :focus-visible,
+.partners :focus-visible,
+.foot :focus-visible {
+  outline-color: var(--marigold);
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 .visually-hidden {
@@ -74,10 +85,12 @@ h3 {
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
 p {
   margin: 0;
+  text-wrap: pretty;
 }
 
 /* ---------- Masthead ---------- */
@@ -107,13 +120,6 @@ p {
   text-decoration-thickness: 3px;
 }
 
-/* On a phone the form is one scroll away, so the masthead keeps only the name. */
-@media (max-width: 599px) {
-  .masthead-link {
-    display: none;
-  }
-}
-
 /* ---------- The court ---------- */
 
 .court {
@@ -124,7 +130,7 @@ p {
   isolation: isolate;
 }
 
-/* Turf grain, so the blue reads as a surface rather than a flat fill. */
+/* Turf grain over the lines and the paint, so they read as painted on. */
 .court::before {
   content: "";
   position: absolute;
@@ -136,11 +142,11 @@ p {
 }
 
 /* The lines of a padel court from above: the net, both service lines and the
-   centre service line that makes the T on the crest. Landscape on wide screens. */
+   centre service line that makes the T on the crest. Wide screens only. */
 .court-lines {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
 }
 
 .court-lines span {
@@ -148,13 +154,13 @@ p {
   background: var(--court-line);
 }
 
-.net {
+.court-lines .net {
   left: 50%;
   top: 0;
   bottom: 0;
   width: 6px;
   transform: translateX(-50%);
-  background: var(--net) !important;
+  background: var(--net);
 }
 
 .service {
@@ -179,11 +185,11 @@ p {
 }
 
 /* AUSTIN, painted behind the baselines the way a tournament paints its name.
-   Wide screens paint both back zones. Phones paint the far end only. */
+   Wide screens paint both back zones. Smaller screens paint the far end only. */
 .court-paint {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
 }
 
@@ -194,9 +200,10 @@ p {
   line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgba(242, 237, 226, 0.9);
+  color: var(--bone);
 }
 
+/* Sized by the window's height too, so the whole word stays above the fold. */
 .court-paint span {
   position: absolute;
   top: 0;
@@ -207,7 +214,7 @@ p {
   justify-content: flex-start;
   padding: 72px 0;
   writing-mode: vertical-rl;
-  font-size: min(10vw, 150px);
+  font-size: min(10vw, 150px, (100vh - 170px) / 5);
 }
 
 /* Turned to read upward, so its start sits at the bottom: push it to the top. */
@@ -223,6 +230,8 @@ p {
 
 .paint-top {
   grid-area: paint;
+  position: relative;
+  z-index: -2;
   margin: -24px calc(-1 * var(--gutter)) 0;
   padding: 0 var(--gutter) 18px;
   border-bottom: 3px solid var(--court-line);
@@ -232,7 +241,7 @@ p {
 
 .court-inner {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     "paint"
     "hook"
@@ -254,9 +263,9 @@ p {
   padding: 8px 0 48px;
 }
 
-/* Phones: the court turns portrait and only the lines around the card show,
-   so nothing crosses the text. The net runs through the card, and the centre
-   service line drops from it to the service line below. */
+/* Phones: only the lines around the card show, so nothing crosses the text.
+   The net runs through the card, and the centre service line drops from it
+   to the service line below. */
 .card-zone::before,
 .card-zone::after {
   content: "";
@@ -282,6 +291,7 @@ p {
 
 .join {
   grid-area: join;
+  max-width: 640px;
 }
 
 h1 {
@@ -301,12 +311,15 @@ h1 {
 
 /* ---------- The membership card ---------- */
 
+/* A column, so the signature line always sits below the fields. The card
+   keeps its wallet shape and only grows when the fields need the room. */
 .carnet {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: min(440px, 100%);
   aspect-ratio: 1.586;
   margin: 0;
-  overflow: hidden;
   border-radius: 14px;
   background: var(--card);
   color: var(--ink);
@@ -333,6 +346,7 @@ h1 {
   align-items: center;
   gap: 10px;
   padding: 9px 16px;
+  border-radius: 14px 14px 0 0;
   background: var(--ink);
   color: var(--bone);
   font-stretch: 112%;
@@ -356,9 +370,13 @@ h1 {
 
 .carnet-fields {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: 6px 18px;
-  margin: 0 18px;
+  margin: 0 18px 30px;
+}
+
+.carnet-fields > div {
+  min-width: 0;
 }
 
 .carnet-fields dt {
@@ -380,24 +398,24 @@ h1 {
 }
 
 .firma {
-  position: absolute;
-  left: 18px;
-  right: 46%;
-  bottom: 12px;
+  position: relative;
+  width: calc(54% - 18px);
+  margin: auto 0 12px 18px;
   padding-top: 3px;
   border-top: 1px solid #b6ad9a;
 }
 
+/* A tall line box, so Homemade Apple's capitals and loops aren't cut off. */
 .firma-ink {
   position: absolute;
   left: 4px;
-  bottom: 22px;
+  bottom: 12px;
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
   font-family: var(--script);
   font-size: 17px;
-  line-height: 1;
+  line-height: 2.2;
   color: var(--pen);
 }
 
@@ -463,26 +481,40 @@ h1 {
 }
 
 .field input::placeholder {
-  color: #8e877b;
+  color: #756e62;
 }
 
 .field input:focus-visible {
-  outline: none;
   border-color: var(--marigold);
+}
+
+.level-note,
+.join-status {
+  max-width: 46ch;
+  font-size: 15px;
 }
 
 .level-note {
   margin-top: 12px;
-  max-width: 46ch;
-  font-size: 15px;
+}
+
+.join-status {
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.level-note:empty,
+.join-status:empty {
+  margin-top: 0;
 }
 
 .join button,
 .button {
   display: inline-block;
   margin-top: 18px;
-  padding: 14px 22px;
-  border: 0;
+  padding: 12px 20px;
+  border: 2px solid transparent;
   border-radius: 6px;
   background: var(--marigold);
   color: var(--ink);
@@ -503,7 +535,15 @@ h1 {
   max-width: 50ch;
   font-size: 14px;
   line-height: 1.5;
-  color: rgba(242, 237, 226, 0.82);
+  color: rgba(242, 237, 226, 0.9);
+}
+
+.subs a,
+.fine a,
+.foot a,
+.join-status a {
+  text-decoration-color: var(--marigold);
+  text-decoration-thickness: 2px;
 }
 
 /* ---------- Sections below the court ---------- */
@@ -533,7 +573,6 @@ h1 {
 
 .season-head p {
   max-width: 60ch;
-  color: var(--ink-soft);
 }
 
 .fixtures {
@@ -575,7 +614,7 @@ h1 {
 .fixtures h3 {
   font-stretch: 112%;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .fixtures p {
@@ -618,7 +657,7 @@ h1 {
 .board-grid {
   position: relative;
   display: grid;
-  grid-template-columns: 4.6rem repeat(6, 1fr);
+  grid-template-columns: max-content repeat(6, minmax(0, 1fr));
   gap: 4px;
   font-size: 14px;
   font-variant-numeric: tabular-nums;
@@ -632,11 +671,12 @@ h1 {
   border-radius: 3px;
 }
 
-/* The pen line that traces the snake runs under the pick numbers. */
+/* The pen line runs under the pick numbers and over the hatched balance
+   rounds, so its arrow shows where the snake hands over. */
 .snake {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   width: 100%;
   height: 100%;
   overflow: visible;
@@ -657,6 +697,7 @@ h1 {
   color: var(--ink-soft);
 }
 
+.board-grid .corner,
 .board-grid .row {
   padding-right: 8px;
   text-align: right;
@@ -665,6 +706,7 @@ h1 {
 }
 
 .board-grid .pick {
+  z-index: 3;
   display: grid;
   place-items: center;
   padding: 4px 0;
@@ -690,7 +732,6 @@ h1 {
 .board-grid .balance {
   min-height: calc(2.3em + 8px);
   background: repeating-linear-gradient(135deg, #e7dfcd 0 6px, #f1ebdd 6px 12px);
-  color: var(--ink-soft);
 }
 
 .board figcaption {
@@ -699,34 +740,10 @@ h1 {
   color: var(--ink-soft);
 }
 
-/* ---------- Format ---------- */
+/* ---------- One match night ---------- */
 
-.rules {
-  display: grid;
-  gap: 0 48px;
-  max-width: 1180px;
-  margin: 32px 0 0;
-}
-
-.rules div {
-  padding: 18px 0;
-  border-top: 1px solid var(--rule);
-}
-
-.rules dt {
-  font-stretch: 112%;
-  font-weight: 700;
-  font-size: 19px;
-}
-
-.rules dd {
-  margin: 6px 0 0;
-  max-width: 52ch;
-  color: var(--ink-soft);
-}
-
-/* One fixture from above: your six against their six on three courts, then
-   the times that run the night. */
+/* One fixture from above: your three pairs against their three on three
+   courts, beside how the night works. */
 .fixture {
   display: grid;
   gap: 28px 64px;
@@ -764,33 +781,31 @@ h1 {
   stroke-width: 3.5;
 }
 
-.mini .you,
-.mini .them {
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-
+/* Your pairs in ink, like the first pick on the draft board. Marigold stays
+   for things you can press. */
 .mini .you {
-  fill: var(--marigold);
+  fill: var(--ink);
+  stroke: var(--bone);
+  stroke-width: 2.5;
 }
 
 .mini .them {
   fill: var(--card);
+  stroke: var(--ink);
+  stroke-width: 2;
 }
 
 .mini p {
   margin-top: 10px;
   font-size: 15px;
   line-height: 1.3;
-  color: var(--ink-soft);
 }
 
 .mini b {
   display: block;
   font-stretch: 112%;
   font-weight: 750;
-  font-size: 17px;
-  color: var(--ink);
+  font-size: 19px;
 }
 
 .fixture-copy {
@@ -819,7 +834,7 @@ h1 {
 }
 
 .dot.you {
-  background: var(--marigold);
+  background: var(--ink);
 }
 
 .dot.them {
@@ -848,11 +863,11 @@ h1 {
   display: grid;
   gap: 16px;
   max-width: 56ch;
-  font-size: 19px;
+  font-size: 18px;
 }
 
-.subs {
-  color: var(--ink-soft);
+.subs a {
+  font-weight: 600;
 }
 
 /* ---------- Commissioner ---------- */
@@ -910,13 +925,37 @@ h1 {
   border-top: 1px solid rgba(242, 237, 226, 0.15);
 }
 
-/* ---------- Wide screens ---------- */
+/* ---------- Phones ---------- */
 
-@media (min-width: 760px) {
-  .rules {
-    grid-template-columns: 1fr 1fr;
+/* The masthead keeps a way to the form, set on two lines so it fits. */
+@media (max-width: 599px) {
+  .brand {
+    gap: 10px;
+    font-size: 17px;
   }
 
+  .masthead-link {
+    display: block;
+    max-width: 6.2em;
+    text-align: right;
+    line-height: 1.25;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 600px) {
+  .fields {
+    grid-template-columns: 1.3fr 1fr;
+  }
+
+  .field-name {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Tablets and up ---------- */
+
+@media (min-width: 760px) {
   .fixture {
     grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
     align-items: start;
@@ -940,9 +979,60 @@ h1 {
   .fee-copy {
     padding-top: 12px;
   }
+
+  /* Room for the level note, so showing it never moves the card. */
+  .level-note,
+  .level-note:empty {
+    min-height: 3.1em;
+    margin-top: 12px;
+  }
 }
 
+/* Tablets and small laptops: words and form on the left, the card on the
+   right, AUSTIN painted across the top. */
+@media (min-width: 760px) and (max-width: 1179px) {
+  .court-inner {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    grid-template-areas:
+      "paint paint"
+      "hook card"
+      "join card";
+    column-gap: 40px;
+    row-gap: 32px;
+  }
+
+  .card-zone {
+    padding: 0;
+    align-self: center;
+  }
+
+  .card-zone::before,
+  .card-zone::after {
+    display: none;
+  }
+
+  .paint-top {
+    font-size: 112px;
+  }
+
+  h1 {
+    font-size: clamp(3.1rem, 7vw, 5rem);
+  }
+}
+
+/* The sections below the court share one pair of columns. */
 @media (min-width: 1040px) {
+  .draft,
+  .fixture,
+  .fee {
+    grid-template-columns: repeat(2, minmax(0, 558px));
+    column-gap: 64px;
+    align-items: start;
+  }
+}
+
+/* Wide screens: the court turns landscape, AUSTIN at both ends. */
+@media (min-width: 1180px) {
   .court-inner {
     grid-template-columns: 15.25% 1fr 1fr 15.25%;
     grid-template-rows: 1fr 1fr;
@@ -974,14 +1064,6 @@ h1 {
     padding: 40px 40px 64px 36px;
   }
 
-  .fields {
-    grid-template-columns: 1.3fr 1fr;
-  }
-
-  .field-name {
-    grid-column: 1 / -1;
-  }
-
   .card-zone {
     padding: 0 24px;
   }
@@ -994,55 +1076,23 @@ h1 {
   .paint-top {
     display: none;
   }
-
-  .draft {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: start;
-    gap: 72px;
-  }
 }
 
-/* Narrow screens: the court turns portrait, so the net runs across. */
-@media (max-width: 1039px) {
+@media (max-width: 1179px) {
   .court-lines,
   .court-paint {
     display: none;
   }
+}
 
-  .net {
-    left: 0;
-    right: 0;
-    top: 50%;
-    bottom: auto;
-    width: auto;
-    height: 6px;
-    transform: translateY(-50%);
+/* Phones turned sideways: a smaller AUSTIN and headline, so the intro shows. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .paint-top {
+    font-size: 18vh;
   }
 
-  .service {
-    left: 0;
-    right: 0;
-    width: auto;
-    height: 3px;
-  }
-
-  .service-a {
-    top: 15.25%;
-    bottom: auto;
-  }
-
-  .service-b {
-    top: 84.75%;
-    bottom: auto;
-  }
-
-  .centre {
-    top: 15.25%;
-    bottom: 15.25%;
-    left: 50%;
-    right: auto;
-    width: 3px;
-    height: auto;
+  h1 {
+    font-size: 15vh;
   }
 }
 

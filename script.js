@@ -5,8 +5,10 @@ const TO = "brookswiley@gmail.com";
 const form = document.getElementById("join");
 const card = document.getElementById("carnet");
 const note = document.getElementById("level-note");
+const status = document.getElementById("join-status");
 const slot = (name) => card.querySelector(`[data-field="${name}"]`);
-const NBSP = " ";
+const NBSP = " ";
+const LEVEL_NOTE = "The league is aimed at 3.5 to 4.0. Send it anyway and Brooks will get back to you.";
 
 function read() {
   const data = new FormData(form);
@@ -17,40 +19,72 @@ function read() {
   };
 }
 
+// A long name shrinks to fit the signature line instead of running off it.
+function fitSignature() {
+  const ink = slot("sign");
+  ink.style.fontSize = "";
+  const room = ink.parentElement.clientWidth - 8;
+  if (ink.scrollWidth > room) {
+    const size = parseFloat(getComputedStyle(ink).fontSize);
+    ink.style.fontSize = `${((size * room) / ink.scrollWidth).toFixed(1)}px`;
+  }
+}
+
 function sync() {
   const v = read();
   slot("name").textContent = v.name || NBSP;
   slot("sign").textContent = v.name;
   slot("club").textContent = v.club || NBSP;
   slot("level").textContent = v.level || NBSP;
-  // The league is aimed at Playtomic 3.5 to 4.0. Anyone outside it can still send.
-  const level = Number(v.level.replace(",", "."));
-  note.hidden = !(v.level && Number.isFinite(level) && (level < 3.5 || level > 4));
+  fitSignature();
   card.classList.remove("is-stamped");
+  status.textContent = "";
+}
+
+// The league is aimed at Playtomic 3.5 to 4.0. Checked when you leave the
+// field, so the note doesn't flash while you're still typing 3.75.
+function checkLevel() {
+  const raw = form.elements.level.value.trim();
+  const level = Number(raw.replace(",", "."));
+  note.textContent = raw && Number.isFinite(level) && (level < 3.5 || level > 4) ? LEVEL_NOTE : "";
 }
 
 form.addEventListener("input", sync);
+form.elements.level.addEventListener("change", checkLevel);
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  checkLevel();
   const v = read();
   if (!v.name) {
-    form.elements.name.focus();
+    form.elements.name.value = "";
+    form.reportValidity();
     return;
   }
+  const subject = `Put me down: ${v.name}`;
   const body = [
     `Name: ${v.name}`,
     `Home club: ${v.club || "-"}`,
     `Playtomic level: ${v.level || "-"}`,
     "",
-    "Put me down for the Austin pilot. Send me the registration link when it opens.",
+    "Put me down for the Austin pilot. Email me when registration opens.",
   ].join("\n");
+  const query = `subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  // Say what happens next, with a way through when no mail app opens.
+  const gmail = document.createElement("a");
+  gmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${TO}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  gmail.target = "_blank";
+  gmail.rel = "noopener";
+  gmail.textContent = "Open it in Gmail";
+  status.replaceChildren("Your email should be open. Press send there and you're on the list. Nothing opened? ", gmail, ` or write to ${TO}.`);
+
   card.classList.add("is-stamped");
-  window.location.href = `mailto:${TO}?subject=${encodeURIComponent(`Put me down: ${v.name}`)}&body=${encodeURIComponent(body)}`;
+  window.location.href = `mailto:${TO}?${query}`;
 });
 
 // The draft board: four snake rounds, then two balance rounds where the team
-// with the lowest total picks first. A pen line traces the snake.
+// with the lowest combined level picks first. A pen line traces the snake.
 const TEAMS = 6;
 const SNAKE_ROUNDS = 4;
 const ROUNDS = 6;
@@ -105,4 +139,9 @@ function drawSnake() {
 }
 
 new ResizeObserver(drawSnake).observe(board);
-if (document.fonts) document.fonts.ready.then(drawSnake);
+if (document.fonts) {
+  document.fonts.ready.then(() => {
+    drawSnake();
+    fitSignature();
+  });
+}
