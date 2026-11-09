@@ -178,10 +178,63 @@ p {
   height: 3px;
 }
 
+/* AUSTIN, painted behind the baselines the way a tournament paints its name.
+   Wide screens paint both back zones. Phones paint the far end only. */
+.court-paint {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.court-paint span,
+.paint-top {
+  font-stretch: 112%;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 226, 0.9);
+}
+
+.court-paint span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 15.25%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 72px 0;
+  writing-mode: vertical-rl;
+  font-size: min(10vw, 150px);
+}
+
+/* Turned to read upward, so its start sits at the bottom: push it to the top. */
+.court-paint .paint-a {
+  left: 0;
+  justify-content: flex-end;
+  transform: rotate(180deg);
+}
+
+.court-paint .paint-b {
+  right: 0;
+}
+
+.paint-top {
+  grid-area: paint;
+  margin: -24px calc(-1 * var(--gutter)) 0;
+  padding: 0 var(--gutter) 18px;
+  border-bottom: 3px solid var(--court-line);
+  text-align: center;
+  font-size: min(17vw, 140px);
+}
+
 .court-inner {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
+    "paint"
     "hook"
     "card"
     "join";
@@ -563,6 +616,7 @@ h1 {
 }
 
 .board-grid {
+  position: relative;
   display: grid;
   grid-template-columns: 4.6rem repeat(6, 1fr);
   gap: 4px;
@@ -570,10 +624,32 @@ h1 {
   font-variant-numeric: tabular-nums;
 }
 
-.board-grid span {
+.board-grid > span {
+  position: relative;
+  z-index: 1;
   padding: 7px 0;
   text-align: center;
   border-radius: 3px;
+}
+
+/* The pen line that traces the snake runs under the pick numbers. */
+.snake {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  color: var(--pen);
+}
+
+.snake-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .board-grid .col {
@@ -589,16 +665,30 @@ h1 {
 }
 
 .board-grid .pick {
-  background: var(--bone);
-  font-weight: 600;
+  display: grid;
+  place-items: center;
+  padding: 4px 0;
 }
 
-.board-grid .pick.first {
+.board-grid .pick b {
+  display: grid;
+  place-items: center;
+  width: 2.3em;
+  height: 2.3em;
+  border: 1.5px solid #cdbf9f;
+  border-radius: 50%;
+  background: var(--bone);
+  font-weight: 650;
+}
+
+.board-grid .pick.first b {
+  border-color: var(--ink);
   background: var(--ink);
   color: var(--bone);
 }
 
 .board-grid .balance {
+  min-height: calc(2.3em + 8px);
   background: repeating-linear-gradient(135deg, #e7dfcd 0 6px, #f1ebdd 6px 12px);
   color: var(--ink-soft);
 }
@@ -633,6 +723,128 @@ h1 {
   margin: 6px 0 0;
   max-width: 52ch;
   color: var(--ink-soft);
+}
+
+/* One fixture from above: your six against their six on three courts, then
+   the times that run the night. */
+.fixture {
+  display: grid;
+  gap: 28px 64px;
+  max-width: 1180px;
+  margin: 36px 0 12px;
+}
+
+.fixture-courts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 3vw, 24px);
+  max-width: 440px;
+}
+
+.mini svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mini .surface {
+  fill: var(--court);
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+
+.mini .lines {
+  fill: none;
+  stroke: rgba(238, 242, 250, 0.75);
+  stroke-width: 1.6;
+}
+
+.mini .netline {
+  stroke: var(--ink);
+  stroke-width: 3.5;
+}
+
+.mini .you,
+.mini .them {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.mini .you {
+  fill: var(--marigold);
+}
+
+.mini .them {
+  fill: var(--card);
+}
+
+.mini p {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--ink-soft);
+}
+
+.mini b {
+  display: block;
+  font-stretch: 112%;
+  font-weight: 750;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.clock {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 3px solid var(--ink);
+}
+
+.clock li {
+  display: grid;
+  grid-template-columns: 4.6rem 1fr;
+  align-items: baseline;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.clock time {
+  font-stretch: 62%;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+
+.clock span {
+  max-width: 40ch;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.dot {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+
+.dot.you {
+  background: var(--marigold);
+}
+
+.dot.them {
+  margin-left: 10px;
+  background: var(--card);
 }
 
 /* ---------- Fee ---------- */
@@ -725,6 +937,20 @@ h1 {
     grid-template-columns: 1fr 1fr;
   }
 
+  .fixture {
+    grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .legend {
+    grid-column: 1;
+  }
+
+  .clock {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
   .fee {
     grid-template-columns: auto 1fr;
     gap: 48px;
@@ -784,6 +1010,10 @@ h1 {
     display: none;
   }
 
+  .paint-top {
+    display: none;
+  }
+
   .draft {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: start;
@@ -793,7 +1023,8 @@ h1 {
 
 /* Narrow screens: the court turns portrait, so the net runs across. */
 @media (max-width: 1039px) {
-  .court-lines {
+  .court-lines,
+  .court-paint {
     display: none;
   }
 
