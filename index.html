@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sociedad El Muerto Padel League</title>
+  <meta name="description" content="A padel team league in Austin. 48 players drafted onto six teams, one Thursday a month from January to June 2027. Draft night is January 7 at Padel Society.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sociedad El Muerto Padel League">
+  <meta property="og:description" content="Austin's padel draft league. Draft night is Thursday, January 7, at Padel Society.">
+  <meta property="og:url" content="https://orangebl00d.github.io/sociedad-el-muerto-padel/">
+  <meta property="og:image" content="https://orangebl00d.github.io/sociedad-el-muerto-padel/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#1d4f9f">
+  <link rel="icon" href="assets/icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Homemade+Apple&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./">
+      <img src="assets/crest-mark.png" alt="" width="36" height="42">
+      <span>Sociedad El Muerto</span>
+    </a>
+    <a class="masthead-link" href="#join">Put your name down</a>
+  </header>
+
+  <main>
+    <section class="court" aria-labelledby="hook">
+      <div class="court-lines" aria-hidden="true">
+        <span class="net"></span>
+        <span class="service service-a"></span>
+        <span class="service service-b"></span>
+        <span class="centre"></span>
+      </div>
+
+      <div class="court-inner">
+        <div class="hook">
+          <h1 id="hook">You get drafted.</h1>
+          <p class="lede">Sociedad El Muerto is a padel team league for Austin. On Thursday, January 7, at Padel Society, six captains draft 48 rated players onto six teams, no more than three from any one club. Then every team plays the same Thursday night, once a month, through June.</p>
+        </div>
+
+        <div class="card-zone">
+        <figure class="carnet" id="carnet" aria-label="Your membership card. It fills in as you type.">
+          <div class="carnet-band">
+            <img src="assets/crest-mark.png" alt="" width="30" height="35">
+            <span>Sociedad El Muerto Padel League</span>
+          </div>
+          <p class="carnet-title">Carnet de socio</p>
+          <dl class="carnet-fields">
+            <div><dt>Nombre</dt><dd data-field="name">&nbsp;</dd></div>
+            <div><dt>Club</dt><dd data-field="club">&nbsp;</dd></div>
+            <div><dt>Nivel</dt><dd data-field="level">&nbsp;</dd></div>
+            <div><dt>Temporada</dt><dd>Austin 2027</dd></div>
+          </dl>
+          <div class="firma">
+            <span class="firma-ink" data-field="sign"></span>
+            <span class="firma-label">Firma</span>
+          </div>
+          <span class="sello" aria-hidden="true">Apuntado</span>
+        </figure>
+        </div>
+
+        <form class="join" id="join" action="mailto:brookswiley@gmail.com" method="post" enctype="text/plain">
+          <h2>Put your name down</h2>
+          <div class="fields">
+            <label class="field field-name">Name<input name="name" autocomplete="name" required></label>
+            <label class="field">Home club<input name="club" placeholder="Where you play now"></label>
+            <label class="field">Playtomic level<input name="level" inputmode="decimal" placeholder="3.25"></label>
+          </div>
+          <p class="level-note" id="level-note" hidden>The pilot is for Playtomic 2.5 and up. Send it anyway and Brooks will keep you on the list.</p>
+          <button type="submit">Email it to Brooks</button>
+          <p class="fine">This opens an email with your details filled in. We'll send you the registration link when it opens. No email app? Write to <a href="mailto:brookswiley@gmail.com">brookswiley@gmail.com</a>.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="season" aria-labelledby="season-h">
+      <div class="season-head">
+        <h2 id="season-h">The season</h2>
+        <p>Seven Thursdays, all at 6:30 pm. Six teams play five rounds, so every team meets every other team once, and then everyone plays finals night. A different Austin club hosts each round, and every round has a backup Thursday for rain.</p>
+      </div>
+      <ol class="fixtures">
+        <li class="is-big">
+          <time datetime="2027-01-07"><span class="d">7</span><span class="m">Jan</span></time>
+          <div><h3>Draft night</h3><p>At Padel Society. Every registered player is invited, and you find out your team that night.</p></div>
+        </li>
+        <li><time datetime="2027-01-14"><span class="d">14</span><span class="m">Jan</span></time><div><h3>Round 1</h3></div></li>
+        <li><time datetime="2027-02-11"><span class="d">11</span><span class="m">Feb</span></time><div><h3>Round 2</h3></div></li>
+        <li>
+          <time datetime="2027-03-11"><span class="d">11</span><span class="m">Mar</span></time>
+          <div><h3>Round 3</h3><p>Backup is April 1, after SXSW and spring break.</p></div>
+        </li>
+        <li><time datetime="2027-04-15"><span class="d">15</span><span class="m">Apr</span></time><div><h3>Round 4</h3></div></li>
+        <li><time datetime="2027-05-13"><span class="d">13</span><span class="m">May</span></time><div><h3>Round 5</h3></div></li>
+        <li class="is-big">
+          <time datetime="2027-06-10"><span class="d">10</span><span class="m">Jun</span></time>
+          <div><h3>Finals night</h3><p>Every team plays. The top two seeds play for the title.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="draft" aria-labelledby="draft-h">
+      <div class="draft-copy">
+        <h2 id="draft-h">How the draft works</h2>
+        <p>Nobody picks their own team. Your Playtomic level goes on the board, the commissioner and two captains check it, and six captains draft in a snake. The last two rounds go to whichever teams are lowest, so the totals even out.</p>
+        <p>We ran the format 2,000 times before settling on it. In about 99 of every 100 simulated seasons, every team's average level landed within a quarter point of every other team's.</p>
+        <p>No team carries more than three players from one club. You will play with people you've never booked a court with.</p>
+      </div>
+      <figure class="board">
+        <div class="board-grid" role="img" aria-label="Draft board. Picks 1 to 36 run back and forth across six teams for six rounds. Rounds 7 and 8 go to the lowest teams first.">
+          <span class="corner"></span>
+          <span class="col">Team 1</span><span class="col">2</span><span class="col">3</span><span class="col">4</span><span class="col">5</span><span class="col">6</span>
+        </div>
+        <figcaption>Picks run back and forth. Rounds 7 and 8 go to the lowest teams first.</figcaption>
+      </figure>
+    </section>
+
+    <section class="night" aria-labelledby="night-h">
+      <h2 id="night-h">What a Thursday looks like</h2>
+      <dl class="rules">
+        <div><dt>Three lines at once</dt><dd>Each team plays one fixture: two open doubles lines and one mixed line, side by side.</dd></div>
+        <div><dt>Golden point</dt><dd>Two sets to six. Every deuce is one point, and the receiving pair picks who receives it. At a set apiece, a 10-point match tiebreak.</dd></div>
+        <div><dt>The horn</dt><dd>At 85 minutes a horn sounds and play stops after the point. The pair ahead takes the line. All square, one golden point decides it.</dd></div>
+        <div><dt>On time</dt><dd>A pair that isn't on court ten minutes after the start loses the line 6-0, 6-0.</dd></div>
+        <div><dt>Lineups</dt><dd>Captains set them by 6:30 pm the night before. Nobody sees the other team's until 6:00 pm on the night.</dd></div>
+        <div><dt>Points</dt><dd>One for every line you win, and one more for winning the fixture.</dd></div>
+      </dl>
+    </section>
+
+    <section class="fee" aria-labelledby="fee-h">
+      <h2 id="fee-h"><span class="visually-hidden">League fee: </span>$55</h2>
+      <div class="fee-copy">
+        <p>That's the league fee for the season. It covers draft night, finals night, new balls for every line, a team shirt and the app that runs lineups and scores.</p>
+        <p>Court time you pay to the host club on the night: $15 or $30 a session, depending on the club. Play all six match nights and the season costs $145 to $235 all in.</p>
+        <p>Make every match you're in the lineup for and $10 comes off next season. The league runs at cost, and anything left over lowers the next fee.</p>
+        <p class="subs">Can't promise every Thursday? <a href="mailto:brookswiley@gmail.com?subject=Sub%20list%3A%20Sociedad%20El%20Muerto">Join the sub list</a> and fill in when a team is short.</p>
+      </div>
+    </section>
+
+    <section class="note" aria-labelledby="note-h">
+      <h2 id="note-h" class="visually-hidden">From the commissioner</h2>
+      <div class="note-copy">
+        <p>Sociedad El Muerto is my team at Padel Society. I wanted a league where the six teams mix players from every club in town, so a Thursday night turns into new partners and new rivals.</p>
+        <p>I co-founded Major League Pickleball and was DUPR's first CEO, so I've built a draft league and a rating system before. This one is smaller on purpose, 48 players in one city.</p>
+        <p>Austin goes first. Dallas and Houston are next.</p>
+        <p class="signed"><span class="signature">Brooks Wiley</span><span>Commissioner</span></p>
+      </div>
+    </section>
+
+    <section class="partners" aria-labelledby="partners-h">
+      <h2 id="partners-h">Clubs and partners</h2>
+      <p>A host club gets 48 players and their friends at its bar on a Thursday night. A partner can back one team or the whole season. Write to Brooks with what you have in mind.</p>
+      <a class="button" href="mailto:brookswiley@gmail.com?subject=Sociedad%20El%20Muerto%3A%20clubs%20and%20partners">Email Brooks</a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <img src="assets/crest-mark.png" alt="" width="36" height="42">
+    <p>Sociedad El Muerto Padel League, Austin, Texas.</p>
+    <p><a href="mailto:brookswiley@gmail.com">brookswiley@gmail.com</a></p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
