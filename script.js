@@ -1,13 +1,10 @@
-// The membership card fills in as you type, and "Email it to Brooks" opens an
-// email with the details already written. No server: the site is static.
+// "Email it to Brooks" opens an email with the visitor's details already
+// written. No server: the site is static.
 
 const TO = "brookswiley@gmail.com";
 const form = document.getElementById("join");
-const card = document.getElementById("carnet");
 const note = document.getElementById("level-note");
 const status = document.getElementById("join-status");
-const slot = (name) => card.querySelector(`[data-field="${name}"]`);
-const NBSP = " ";
 const LEVEL_NOTE = "The league is aimed at 3.5 to 4.0. Send it anyway and Brooks will get back to you.";
 
 function read() {
@@ -19,28 +16,6 @@ function read() {
   };
 }
 
-// A long name shrinks to fit the signature line instead of running off it.
-function fitSignature() {
-  const ink = slot("sign");
-  ink.style.fontSize = "";
-  const room = ink.parentElement.clientWidth - 8;
-  if (ink.scrollWidth > room) {
-    const size = parseFloat(getComputedStyle(ink).fontSize);
-    ink.style.fontSize = `${((size * room) / ink.scrollWidth).toFixed(1)}px`;
-  }
-}
-
-function sync() {
-  const v = read();
-  slot("name").textContent = v.name || NBSP;
-  slot("sign").textContent = v.name;
-  slot("club").textContent = v.club || NBSP;
-  slot("level").textContent = v.level || NBSP;
-  fitSignature();
-  card.classList.remove("is-stamped");
-  status.textContent = "";
-}
-
 // The league is aimed at Playtomic 3.5 to 4.0. Checked when you leave the
 // field, so the note doesn't flash while you're still typing 3.75.
 function checkLevel() {
@@ -49,7 +24,9 @@ function checkLevel() {
   note.textContent = raw && Number.isFinite(level) && (level < 3.5 || level > 4) ? LEVEL_NOTE : "";
 }
 
-form.addEventListener("input", sync);
+form.addEventListener("input", () => {
+  status.textContent = "";
+});
 form.elements.level.addEventListener("change", checkLevel);
 
 form.addEventListener("submit", (event) => {
@@ -69,7 +46,6 @@ form.addEventListener("submit", (event) => {
     "",
     "Put me down for the Austin pilot. Email me when registration opens.",
   ].join("\n");
-  const query = `subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
   // Say what happens next, with a way through when no mail app opens.
   const gmail = document.createElement("a");
@@ -79,8 +55,7 @@ form.addEventListener("submit", (event) => {
   gmail.textContent = "Open it in Gmail";
   status.replaceChildren("Your email should be open. Press send there and you're on the list. Nothing opened? ", gmail, ` or write to ${TO}.`);
 
-  card.classList.add("is-stamped");
-  window.location.href = `mailto:${TO}?${query}`;
+  window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
 // The draft board: four snake rounds, then two balance rounds where the team
@@ -139,9 +114,4 @@ function drawSnake() {
 }
 
 new ResizeObserver(drawSnake).observe(board);
-if (document.fonts) {
-  document.fonts.ready.then(() => {
-    drawSnake();
-    fitSignature();
-  });
-}
+if (document.fonts) document.fonts.ready.then(drawSnake);

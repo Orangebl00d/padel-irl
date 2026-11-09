@@ -245,7 +245,6 @@ p {
   grid-template-areas:
     "paint"
     "hook"
-    "card"
     "join";
   gap: 40px;
   padding: 56px var(--gutter) 64px;
@@ -253,40 +252,19 @@ p {
 
 .hook {
   grid-area: hook;
-}
-
-.card-zone {
-  grid-area: card;
   position: relative;
-  display: grid;
-  place-items: center;
-  padding: 8px 0 48px;
 }
 
-/* Phones: only the lines around the card show, so nothing crosses the text.
-   The net runs through the card, and the centre service line drops from it
-   to the service line below. */
-.card-zone::before,
-.card-zone::after {
+/* Phones: the net runs across the court between the words and the form. */
+.hook::after {
   content: "";
   position: absolute;
   left: -100vw;
   right: -100vw;
-  z-index: -1;
-}
-
-.card-zone::before {
-  top: calc(50% - 24px);
+  bottom: -23px;
+  z-index: -2;
   height: 6px;
   background: var(--net);
-}
-
-.card-zone::after {
-  top: calc(50% - 21px);
-  bottom: 0;
-  background:
-    linear-gradient(var(--court-line), var(--court-line)) center top / 3px 100% no-repeat,
-    linear-gradient(var(--court-line), var(--court-line)) center bottom / 100% 3px no-repeat;
 }
 
 .join {
@@ -307,145 +285,6 @@ h1 {
   max-width: 44ch;
   font-size: clamp(18px, 2vw, 21px);
   line-height: 1.5;
-}
-
-/* ---------- The membership card ---------- */
-
-/* A column, so the signature line always sits below the fields. The card
-   keeps its wallet shape and only grows when the fields need the room. */
-.carnet {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: min(440px, 100%);
-  aspect-ratio: 1.586;
-  margin: 0;
-  border-radius: 14px;
-  background: var(--card);
-  color: var(--ink);
-  box-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.2),
-    0 26px 40px -14px rgba(4, 16, 44, 0.65);
-  transform: rotate(-4deg);
-  animation: toss 0.75s cubic-bezier(0.2, 0.9, 0.25, 1.15) 0.2s both;
-}
-
-@keyframes toss {
-  from {
-    opacity: 0;
-    transform: translateY(-46px) rotate(-14deg);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(-4deg);
-  }
-}
-
-.carnet-band {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 16px;
-  border-radius: 14px 14px 0 0;
-  background: var(--ink);
-  color: var(--bone);
-  font-stretch: 112%;
-  font-weight: 700;
-  font-size: 13.5px;
-}
-
-.carnet-band img {
-  width: 24px;
-  height: auto;
-}
-
-.carnet-title {
-  margin: 12px 18px 8px;
-  font-stretch: 62%;
-  font-weight: 800;
-  font-size: clamp(24px, 6vw, 31px);
-  line-height: 1;
-  letter-spacing: 0.01em;
-}
-
-.carnet-fields {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 6px 18px;
-  margin: 0 18px 30px;
-}
-
-.carnet-fields > div {
-  min-width: 0;
-}
-
-.carnet-fields dt {
-  font-size: 11px;
-  line-height: 1.2;
-  color: var(--ink-soft);
-}
-
-.carnet-fields dd {
-  margin: 0;
-  min-height: 1.45em;
-  overflow: hidden;
-  border-bottom: 1px solid #cfc6b3;
-  font-weight: 650;
-  font-size: 15px;
-  line-height: 1.4;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.firma {
-  position: relative;
-  width: calc(54% - 18px);
-  margin: auto 0 12px 18px;
-  padding-top: 3px;
-  border-top: 1px solid #b6ad9a;
-}
-
-/* A tall line box, so Homemade Apple's capitals and loops aren't cut off. */
-.firma-ink {
-  position: absolute;
-  left: 4px;
-  bottom: 12px;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  font-family: var(--script);
-  font-size: 17px;
-  line-height: 2.2;
-  color: var(--pen);
-}
-
-.firma-label {
-  display: block;
-  font-size: 11px;
-  color: var(--ink-soft);
-}
-
-.sello {
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  padding: 3px 10px 4px;
-  border: 3px solid var(--marigold-deep);
-  border-radius: 6px;
-  color: var(--marigold-deep);
-  font-stretch: 112%;
-  font-weight: 800;
-  font-size: 15px;
-  opacity: 0;
-  transform: rotate(-12deg) scale(1.7);
-  transition:
-    opacity 0.2s ease,
-    transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.3);
-}
-
-.carnet.is-stamped .sello {
-  opacity: 0.95;
-  transform: rotate(-12deg) scale(1);
 }
 
 /* ---------- Put your name down ---------- */
@@ -980,7 +819,7 @@ h1 {
     padding-top: 12px;
   }
 
-  /* Room for the level note, so showing it never moves the card. */
+  /* Room for the level note, so showing it never moves the page. */
   .level-note,
   .level-note:empty {
     min-height: 3.1em;
@@ -988,26 +827,20 @@ h1 {
   }
 }
 
-/* Tablets and small laptops: words and form on the left, the card on the
-   right, AUSTIN painted across the top. */
+/* Tablets and small laptops: the words on the left, the form on the right,
+   AUSTIN painted across the top. */
 @media (min-width: 760px) and (max-width: 1179px) {
   .court-inner {
-    grid-template-columns: minmax(0, 1fr) 360px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
       "paint paint"
-      "hook card"
-      "join card";
-    column-gap: 40px;
+      "hook join";
+    column-gap: 56px;
     row-gap: 32px;
+    align-items: start;
   }
 
-  .card-zone {
-    padding: 0;
-    align-self: center;
-  }
-
-  .card-zone::before,
-  .card-zone::after {
+  .hook::after {
     display: none;
   }
 
@@ -1037,14 +870,15 @@ h1 {
     grid-template-columns: 15.25% 1fr 1fr 15.25%;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      ".  hook card ."
-      ".  join card .";
+      ".  hook .    ."
+      ".  .    join .";
     gap: 0;
     padding: 0;
     min-height: max(860px, calc(100vh - 70px));
   }
 
-  /* The centre service line sits at half height, between the words and the form. */
+  /* Cross-court: the words end on one side of the centre service line, and
+     the form starts on the other side of the net. */
   .hook {
     align-self: end;
     padding: 56px 40px 44px 36px;
@@ -1061,15 +895,10 @@ h1 {
 
   .join {
     align-self: start;
-    padding: 40px 40px 64px 36px;
+    padding: 40px 36px 64px 44px;
   }
 
-  .card-zone {
-    padding: 0 24px;
-  }
-
-  .card-zone::before,
-  .card-zone::after {
+  .hook::after {
     display: none;
   }
 
@@ -1101,11 +930,4 @@ h1 {
     scroll-behavior: auto;
   }
 
-  .carnet {
-    animation: none;
-  }
-
-  .sello {
-    transition: none;
-  }
 }
