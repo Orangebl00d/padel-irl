@@ -793,32 +793,12 @@ h1 {
   color: var(--ink);
 }
 
-.clock {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 3px solid var(--ink);
-}
-
-.clock li {
+.fixture-copy {
   display: grid;
-  grid-template-columns: 4.6rem 1fr;
-  align-items: baseline;
-  gap: 16px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.clock time {
-  font-stretch: 62%;
-  font-weight: 800;
-  font-size: 40px;
-  line-height: 0.9;
-  font-variant-numeric: tabular-nums;
-}
-
-.clock span {
-  max-width: 40ch;
+  gap: 14px;
+  max-width: 44ch;
+  font-size: clamp(19px, 2vw, 22px);
+  line-height: 1.45;
 }
 
 .legend {
@@ -946,9 +926,10 @@ h1 {
     grid-column: 1;
   }
 
-  .clock {
+  .fixture-copy {
     grid-column: 2;
     grid-row: 1 / span 2;
+    align-self: center;
   }
 
   .fee {
