@@ -1,4 +1,4 @@
-# Sociedad El Muerto Padel League
+# Padel IRL
 
 The league's public website: one page of plain HTML, CSS and a little JavaScript, served by GitHub Pages at https://orangebl00d.github.io/sociedad-el-muerto-padel/
 

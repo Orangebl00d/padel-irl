@@ -1,6 +1,6 @@
-/* Sociedad El Muerto Padel League.
-   Ink and bone come from the crest. Court is the blue of a padel court seen
-   from above, and marigold is the Dia de Muertos flower, used only where you act.
+/* Padel IRL.
+   Ink and bone, with court: the blue of a padel court seen from above.
+   Marigold is used only where you act.
    One family, Archivo, set wide for headlines and narrow for dates, like a
    scoreboard. Photos are real and shown plain: no frames, shadows or tilt. */
 
@@ -118,6 +118,11 @@ p {
   font-stretch: 112%;
   font-weight: 700;
   font-size: 19px;
+}
+
+.mark {
+  flex: none;
+  display: block;
 }
 
 .masthead-link {
@@ -352,7 +357,7 @@ h1 {
   height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 18% 60%;
+  object-position: 50% 50%;
 }
 
 /* ---------- Sections below the court ---------- */
@@ -600,9 +605,6 @@ h1 {
 /* ---------- Commissioner ---------- */
 
 .note {
-  display: grid;
-  gap: 40px;
-  align-items: center;
   background: var(--card);
 }
 
@@ -626,15 +628,6 @@ h1 {
   font-weight: 750;
   font-size: 20px;
   color: var(--ink);
-}
-
-.note-photo {
-  max-width: 400px;
-}
-
-.note-photo img {
-  width: 100%;
-  height: auto;
 }
 
 /* ---------- Partners and footer ---------- */
@@ -674,9 +667,6 @@ h1 {
     padding: 0 var(--gutter);
   }
 
-  .note-photo {
-    max-width: 78%;
-  }
 
   .brand {
     gap: 10px;
@@ -735,10 +725,6 @@ h1 {
     padding-top: 12px;
   }
 
-  .note {
-    grid-template-columns: minmax(0, 558px) minmax(0, 400px);
-    gap: 64px;
-  }
 }
 
 /* Tablets and small laptops: the pitch and the sign-up on the left, the photo
